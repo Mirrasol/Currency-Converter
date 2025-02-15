@@ -38,6 +38,8 @@ or set your own virtual environment using pip and other package managers.
 > ALGORITHM = choose_algorithm 
 >
 > API_KEY = exchange_api_key 
+>
+> MODE=DEV
 
 You can get the API_Key from the external forex API: ["Currency Data API"](https://apilayer.com/marketplace/currency_data-api`).
 
