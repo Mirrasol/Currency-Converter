@@ -1,11 +1,7 @@
 import pytest
-from fastapi.testclient import TestClient
-from main import app
-
-client = TestClient(app)
 
 
-def test_show_currencies_authorized():
+def test_show_currencies_authorized(client):
     user_data = {'username': 'Wyll', 'password': '_prideofthegate_'}
     response_login = client.post('/auth/login/', data=user_data)
     access_token = response_login.json()['access_token']
@@ -15,7 +11,7 @@ def test_show_currencies_authorized():
     assert response.status_code == 200
 
 
-def test_show_currencies_unauthorized():
+def test_show_currencies_unauthorized(client):
     with pytest.raises(KeyError):
         user_data = {'username': 'Gortash', 'password': 'edictofBane'}
         response_login = client.post('/auth/login/', data=user_data)
@@ -27,7 +23,7 @@ def test_show_currencies_unauthorized():
         assert response.json()["detail"] == "Not authenticated"
 
 
-def test_exchange_currency_authorized():
+def test_exchange_currency_authorized(client):
     user_data = {'username': 'Wyll', 'password': '_prideofthegate_'}
     response_login = client.post('/auth/login/', data=user_data)
     access_token = response_login.json()['access_token']
@@ -42,7 +38,7 @@ def test_exchange_currency_authorized():
     assert response.status_code == 200
 
 
-def test_exchange_currency_unauthorized():
+def test_exchange_currency_unauthorized(client):
     with pytest.raises(KeyError):
         user_data = {'username': 'Gortash', 'password': 'edictofBane'}
         response_login = client.post('/auth/login/', data=user_data)
@@ -59,7 +55,7 @@ def test_exchange_currency_unauthorized():
         assert response.json()["detail"] == "Not authenticated"
 
 
-def test_exchange_currency_unsupported_codes():
+def test_exchange_currency_unsupported_codes(client):
     user_data = {'username': 'Wyll', 'password': '_prideofthegate_'}
     response_login = client.post('/auth/login/', data=user_data)
     access_token = response_login.json()['access_token']
