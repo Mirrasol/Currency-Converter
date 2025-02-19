@@ -1,7 +1,7 @@
 from fastapi import APIRouter, Depends
 from app.api.schemas.currency import Currency
 from app.core.security import get_user_from_token
-from app.utils.external_api import get_currencies_list, get_current_exchange_rates
+from app.utils.external_api import get_current_exchange_rates, get_currencies_list
 
 currency_router = APIRouter(
     prefix='/currency',

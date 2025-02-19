@@ -1,8 +1,7 @@
 import pytest
 from fastapi.testclient import TestClient
 from sqlalchemy import create_engine
-from sqlalchemy.orm import sessionmaker, Session
-from sqlalchemy.pool import StaticPool
+from sqlalchemy.orm import sessionmaker
 from app.db.database import Base, get_session
 from app.core.config import get_settings
 from main import app
@@ -27,6 +26,7 @@ def setup_db():
         transaction.rollback()
         connection.close()
         Base.metadata.drop_all(bind=engine)
+
 
 @pytest.fixture(scope="function")
 def client(db):
