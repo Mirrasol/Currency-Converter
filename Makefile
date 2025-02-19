@@ -8,7 +8,7 @@ test:
 	uv run pytest -v tests/
 
 lint:
-	uv run flake8 app
+	uv run ruff check
 
 build:
 	uv build
