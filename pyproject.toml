@@ -20,8 +20,8 @@ dependencies = [
 
 [tool.uv]
 dev-dependencies = [
-    "flake8>=7.1.1",
     "pytest>=8.3.4",
+    "ruff>=0.9.6",
 ]
 
 [build-system]
